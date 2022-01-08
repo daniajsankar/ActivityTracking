@@ -5,21 +5,14 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
-
+import AppDrawer from "./src/DrawerStack";
 
 const App = () => {
 
   return (
-    <SafeAreaView >
-      <StatusBar translucent backgroundColor="transparent" />
-
-    </SafeAreaView>
+    <AppDrawer />
   );
 };
 
