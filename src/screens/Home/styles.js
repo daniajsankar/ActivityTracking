@@ -5,8 +5,9 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
   },
   contentContainer: {
-    paddingHorizontal: 17,
-    paddingTop: 25,
-    paddingBottom: 40,
+    padding: 20,
+    minHeight: "100%",
+    alignItems: "center",
+    justifyContent: 'center'
   },
 });
