@@ -2,7 +2,7 @@ import BackgroundService from 'react-native-background-actions';
 
 export const sleep = (time) => new Promise((resolve) => setTimeout(() => resolve(), time));
 
-export const interval = 3;
+export const interval = 10;
 const intervalInMilliseconds = interval * 1000;
 
 const options = {

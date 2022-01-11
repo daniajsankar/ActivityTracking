@@ -145,7 +145,6 @@
 				FF6230E6EE12770561B1B524 /* Pods-ActivityTracking-ActivityTrackingTests.debug.xcconfig */,
 				90D5D1D1535F7BB1ACF84B00 /* Pods-ActivityTracking-ActivityTrackingTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T45YYBK6WF;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ActivityTracking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T45YYBK6WF;
 				INFOPLIST_FILE = ActivityTracking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

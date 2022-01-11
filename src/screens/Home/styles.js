@@ -5,7 +5,7 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
   },
   contentContainer: {
-    padding: 20,
+    paddingHorizontal: 20,
     minHeight: "100%",
     alignItems: "center",
     justifyContent: 'center'
