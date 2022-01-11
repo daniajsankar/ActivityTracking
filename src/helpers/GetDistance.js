@@ -17,5 +17,5 @@ function deg2rad(deg) {
 }
 
 export function convertMetersToSteps(meters) {
-    return meters * 1.31233595800525;
+    return parseInt((meters * 1.31233595800525), 0);
 }

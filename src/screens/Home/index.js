@@ -126,13 +126,13 @@ const Home = ({ navigation }) => {
                    returned geolocation maybe two different values for the same location
                    (I mean it may return two different coordinates as you are not moving) 
                    because of the error ratio of the package, so to reduce this error as possible
-                   I put a minimum distance equals 10 meters to consider that the user has really moved
-                   since the error distance is not greater than 10 meters based on testing
+                   I put a minimum distance equals 5 meters to consider that the user has really moved
+                   since the error distance is not greater than 5 meters based on testing
                     */
                     setCurrentTrack((prev) => ({
                         ...prev,
-                        endPoint: getDistanceFromLatLonInM(prev.endPoint, positionObj) > 10 ? positionObj : prev.endPoint,
-                        traveledDistance: prev.traveledDistance + (getDistanceFromLatLonInM(prev.endPoint, positionObj) > 10 ? getDistanceFromLatLonInM(prev.endPoint, positionObj) : 0),
+                        endPoint: getDistanceFromLatLonInM(prev.endPoint, positionObj) > 5 ? positionObj : prev.endPoint,
+                        traveledDistance: prev.traveledDistance + (getDistanceFromLatLonInM(prev.endPoint, positionObj) > 5 ? getDistanceFromLatLonInM(prev.endPoint, positionObj) : 0),
                         writeToFile: true
                     }));
                 }
