@@ -22,15 +22,14 @@ const Home = ({ navigation }) => {
     const [timer, setTimer] = useState(0);
     useEffect(() => {
         readFile("currentTrack.txt").then((content) => {
-            console.log(content);
             if (content) {
-                console.log("content", content);
                 if (isTracking()) {
                     setCurrentStatus("Running Track");
                 } else {
                     setCurrentStatus("Paused Track");
                 }
                 setCurrentTrack(JSON.parse(content));
+                setTimer(JSON.parse(content).trackingTime);
             }
         }).catch((e) => {
             console.log(e);
@@ -87,12 +86,25 @@ const Home = ({ navigation }) => {
         setCurrentTrack((prev) => ({ ...prev, status: "Running Track", writeToFile: true }));
         setCurrentStatus("Running Track");
     }
+    let history;
     const onEndTracking = () => {
         clearInterval(timerRef.current);
         stopTracking()
         deleteFile("currentTrack.txt");
         setCurrentStatus("No Running Track");
+        readFile("historyTracks.txt").then((content) => {
+            if (content) {
+                history = JSON.parse(content);
+                history.push({ ...currentTrack, trackingTime: timer });
+                writeFile("historyTracks.txt", JSON.stringify(history));
+            }
+        }).catch((e) => {
+            history = [];
+            history.push({ ...currentTrack, trackingTime: timer });
+            writeFile("historyTracks.txt", JSON.stringify(history));
+        });
         setCurrentTrack(InitTrack);
+        setTimeout(() => navigation.navigate("History"), 500);
     }
     const onButtonPress = () => {
         if (currentStatus === 'No Running Track')
@@ -107,10 +119,16 @@ const Home = ({ navigation }) => {
         Geolocation.getCurrentPosition(
             (position) => {
                 positionObj = { lat: position.coords.latitude, long: position.coords.longitude };
-                console.log(positionObj);
                 if (firstTime) {
                     setCurrentTrack((prev) => ({ ...prev, startPoint: positionObj, endPoint: positionObj, writeToFile: true }));
                 } else {
+                    /*
+                   returned geolocation maybe two different values for the same location
+                   (I mean it may return two different coordinates as you are not moving) 
+                   because of the error ratio of the package, so to reduce this error as possible
+                   I put a minimum distance equals 10 meters to consider that the user has really moved
+                   since the error distance is not greater than 10 meters based on testing
+                    */
                     setCurrentTrack((prev) => ({
                         ...prev,
                         endPoint: getDistanceFromLatLonInM(prev.endPoint, positionObj) > 10 ? positionObj : prev.endPoint,
